@@ -1,0 +1,1 @@
+module.exports = {view: require('./view'), admin: require('./admin'), api: require('./api')};

@@ -1,0 +1,335 @@
+body {
+    padding-top: 5rem;
+}
+
+#title {
+    cursor: pointer;
+    position: fixed;
+    margin: auto;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(0);
+    top: 1rem;
+    left: 2rem;
+}
+#title img {
+    width: 3rem;
+    height: 3rem;
+}
+#title h1 {
+    font-size: 2rem;
+    margin-left: 0.5rem;
+    margin-bottom:.3rem;
+    text-wrap: nowrap;
+}
+input:focus,
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: var(--bs-border-color);
+}
+#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 5rem;
+    /* needs changing */
+    color: white;
+    padding: 0 1rem;
+    background: #0b1584;
+}
+
+#fake-input {
+    width: 20rem;
+    margin: 0 .5rem 0 0;
+}
+#fake-icon {
+    margin: 0 .5rem 0 0;
+}
+
+#icon-search {
+    position: absolute;
+    left: 28px;
+}
+
+#input-modal {
+    padding-left: 36px;
+    border: 2px solid #3389e0;
+}
+
+li {
+    margin-right: 2rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+#search .modal-dialog {
+    max-width: 100%;
+    width: 90%;
+    margin-top: 1vh;
+}
+
+.search-item {
+    cursor: pointer;
+    border-radius: 5px !important;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+#wrapper * {padding: 0.5rem 1rem 0.5rem 1rem;}
+
+.search-item:hover {
+    background-color: #f8f9fa;
+}
+
+#search .modal-footer {
+    justify-content: start;
+    padding: 0.5rem 2rem 1rem 1.5rem;
+}
+
+#search .modal-body {
+    padding: 0 2rem 0.5rem 1.5rem;
+}
+#search {
+    display: none;
+    justify-content: center;
+}
+
+.show {
+    display: flex !important;
+}
+
+.fade {
+    background: rgba(0, 0, 0, .5);
+}
+
+#search .modal-header {
+    border-bottom: none;
+    padding-bottom: 0.5rem;
+}
+
+.disable {
+    overflow: hidden;
+    padding-right: 17px;
+}
+.nav-item a {
+    color: white;
+}
+.tag0::before {
+    content: "Sjednica";
+}
+.tag0 {
+    background-color: var(--bs-danger);
+}
+.tag1::before {
+    content: "Izlet";
+}
+.tag1 {
+    background-color: var(--bs-warning);
+}
+.tag2::before {
+    content: "Događaj";
+}
+.tag2 {
+    background-color: var(--bs-primary);
+}
+.news-card {
+    background-color: rgba(0, 0, 0, .5);
+    background-blend-mode: soft-light;
+    border: none;
+    border-radius: 5px;
+    background-position: center;
+    background-size: cover;
+}
+.card-tags {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+.badge {
+    font-size: 1rem;
+    margin-right:.4rem;
+}
+p {
+    margin-bottom: 0;
+}
+#fake-icon {
+    display: none;
+    color: white;
+    font-size: 1.5rem;
+    padding-top:.2rem;
+    padding-left: 0.5rem;
+    cursor: pointer;
+}
+.inner-nav {
+    justify-content: end;
+}
+.navbar-toggler {
+    display: none !important;
+}
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+.offcanvas-body * {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.offcanvas-header {
+    padding: 1.5rem;
+}
+.offcanvas-title {
+    font-size: 2rem;
+}
+.con {
+    padding: 2rem 5rem;
+}
+.con h2 {
+    width: 100%;
+}
+.news-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+.fw-bold {
+    font-size: 2rem;
+}
+#cover {
+    width: 100%;
+	height: 5rem;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    background: url('/images/test.jpg');
+    background-size: cover;
+    background-position: 50% 100%;
+	background-blend-mode: soft-light;
+    background-color: #0b1584;
+}
+#navbar {
+    background-color: transparent;
+}
+.modal-content {
+    position: relative;
+}
+
+@media (max-width: 1224px) {
+    .fw-bold {
+        font-size: 1.5rem;
+    }
+    .con {
+        padding: 2rem 2rem;
+    }
+}
+@media (max-width: 1024px) {
+    #fake-input {
+        width: 13.5rem;
+    }
+    li {
+        margin-right: 1.5rem;
+    }
+    #navbar {
+        padding: 0 1rem;
+    }
+    #title {
+        left: 1rem;
+    }
+    .fw-bold {
+        font-size: 1.2rem;
+    }
+    .con {
+        padding: 2rem 1rem;
+    }
+    .badge {
+        font-size: .8rem;
+    }
+    .card-tags {
+        top: .8rem;
+    }
+}
+@media (max-width: 790px) {
+    li {
+        margin-right: 1.2rem;
+    }
+    .fw-bold {
+        font-size: 1.8rem;
+    }
+    .news-card {
+        width: 80%;
+    }
+    .con {
+        padding: 2rem 4rem;
+    }
+    .con h2 {
+        text-align: center;
+    }
+    .badge {
+        font-size: 1rem;
+    }
+    .card-tags {
+        top: 1rem;
+    }
+    #fake-input {
+        display: none;
+    }
+    #fake-icon {
+        display: initial;
+    }
+}
+@media (max-width: 580px) {
+    .navbar-nav {
+        display: none;
+    }
+    .inner-nav {
+        justify-content: space-between;
+    }
+    .navbar-toggler {
+        display: initial !important;
+        color: white;
+        font-size: 1.5rem;
+        border: none;
+        cursor: pointer;
+    }
+    #title h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0;
+    }
+    #title {
+        left: 50vw;
+        transform: translate(-50%, 0);
+    }
+    .fw-bold {
+        font-size: 1.5rem;
+    }
+    #news {
+        grid-template-columns: 1fr;
+        grid-template-rows: 13rem 13rem 13rem;
+        justify-items: center;
+    }
+    .news-card {
+        width: 100%;
+    }
+    #calendar h2 {
+        margin-bottom: 1.5rem;
+    }
+    iframe {
+        height: 20rem;
+    }
+    .con {
+        padding: 2rem 2rem;
+    }
+    .con h2 {
+        text-align: center;
+    }
+    .badge {
+        font-size: 1rem;
+    }
+    .card-tags {
+        top: 1rem;
+    }
+}

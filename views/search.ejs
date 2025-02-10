@@ -1,0 +1,54 @@
+<div id="cover"></div>
+<div id="navbar" class="navbar navbar-expand-lg" style="flex-wrap: nowrap;">
+    <div class="inner-nav d-flex align-items-center w-100">
+        <i class="fa-solid fa-bars navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-nav"
+            aria-controls="offcanvas-nav"></i>
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item">
+                <a href="/" class="nav-link">Početna</a>
+            </li>
+            <li class="nav-item">
+                <a href="/vijece" class="nav-link">O Vijeću</a>
+            </li>
+        </ul>
+        <input id="fake-input" class="form-control" placeholder="Pretraži aktivnosti" aria-label="Search">
+        <i id="fake-icon" class="fa-solid fa-magnifying-glass"></i>
+    </div>
+</div>
+<div id="title">
+    <img src="/images/logo.png">
+    <h1>Vijeće učenika</h1>
+</div>
+<div id="search" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img id="icon-search" src="/images/search.svg">
+                <form style="all: none; width: 100%"><input id="input-modal" class="form-control me-2"
+                        placeholder="Pretraži aktivnosti" aria-label="Search" autocomplete="off" spellcheck="false">
+                </form>
+            </div>
+            <div class="modal-body">
+                <div id="wrapper"></div>
+            </div>
+            <div class="modal-footer">
+                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                    href="/news">
+                    Pregledaj sve aktivnosti
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-nav-label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvas-nav-label">Vijeće učenika</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+            onfocus="this.blur()"></button>
+    </div>
+    <div class="offcanvas-body">
+        <a class="link-dark link-underline-opacity-0" href="/">Početna</a>
+        <a class="link-dark link-underline-opacity-0" href="/vijece">O Vijeću</a>
+    </div>
+</div>
+<script defer src="/js/search.js"></script>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <%- include('heads') %>
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <title>Vijeće učenika</title>
+</head>
+<body>
+  <div class="con">
+    <h2 class="pb-2 mt-2 border-bottom">Najnovije aktivnosti</h2>
+    <div id="news" class="py-3">
+      <% news.forEach(function(neww) { %>
+        <div class="news-card p-4 text-white text-shadow-1" style="background-image: url('/images/<%= neww.images[0] %>');"
+          onclick="window.location.href='/news/<%= neww._id %>'">
+            <p class="lh-1 fw-bold" style="cursor: pointer;">
+              <%= neww.title %>
+            </p>
+            <p class="mt-2">
+              <%= neww.date %>
+            </p>
+          <div class="card-tags">
+            <% neww.tags.split('').forEach(function(tag) { %>
+              <span class="badge rounded-pill tag<%= tag %>"> </span>
+            <% }); %>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  </div>
+  <div class="b-example-divider"></div>
+  <div id="calendar" class="con">
+    <h2 class="pb-2 border-bottom">Kalendar aktivnosti</h2>
+    <iframe
+      src="https://calendar.google.com/calendar/embed?src=c_35f7acee27dbcb7636934e7652bab1db8c3e7bf7892b647b55cdc2e6ca2a77d7%40group.calendar.google.com&ctz=Europe%2FBelgrade"
+      style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  </div>
+  <%- include('search') %>
+</body>
+</html>

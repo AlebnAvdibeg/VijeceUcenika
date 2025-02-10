@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/hugerte@1/hugerte.min.js"></script>
+  <%- include('heads') %>
+    <title>Admin Dashboard</title>
+    <style>
+      body {
+        padding: 4rem;
+      }
+      .tox-statusbar {
+        display: none !important;
+      }
+      #icon-search {
+        position: absolute;
+        left: 28px;
+      }
+      #input-modal {
+        padding-left: 36px;
+        border: 2px solid #3389e0;
+      }
+      input:focus,
+      .form-control:focus {
+        outline: none;
+        box-shadow: none;
+        border-color: var(--bs-border-color);
+      }
+      .modal-body {
+        padding: 0 2rem 0 1.5rem;
+      }
+      .search-item {
+        cursor: pointer;
+        border-radius: 5px !important;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+      }
+      .search-item:last-child {
+        margin-bottom: .5rem !important;
+      }
+      #wrapper * {
+        padding: 0.5rem 1rem 0.5rem 1rem;
+      }
+      .search-item:hover {
+        background-color: #f8f9fa;
+      }
+      .srch {
+        height: initial;
+        width: initial;
+        position: static;
+        display: block;
+        margin-bottom: 1rem;
+      }
+      .modal-header {
+        border-bottom: none !important;
+      }
+      #edit {
+        width: 100%;
+        height: 100%;
+        padding: 4rem;
+        background: white;
+      }
+      .show {
+        display: block !important;
+      }
+      #back {
+        cursor: pointer;
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+      }
+      ul {
+        margin-bottom: .5rem;
+      }
+      #delete {
+        display: none;
+      }
+      button {
+        margin-right: .5rem;
+      }
+      #wrapper {
+        margin-top: -.5rem;
+      }
+    </style>
+</head>
+<body>
+  <div class="modal srch">
+    <ul class="nav justify-content-end">
+      <li id="add" class="nav-item">
+        <p>Add</p>
+      </li>
+    </ul>
+    <div class="modal-content">
+      <div class="modal-header">
+        <img id="icon-search" src="/images/search.svg">
+        <form style="all: none; width: 100%"><input id="input-modal" class="form-control me-2"
+            placeholder="Pretraži aktivnosti" aria-label="Search" autocomplete="off" spellcheck="false">
+        </form>
+      </div>
+      <div class="modal-body">
+        <div id="wrapper"></div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" onclick="window.location = '/admin/logout'">Logout</button>
+  <div class="modal" id="edit">
+  <span id="back"><i class="fa-solid fa-arrow-left"></i></span>
+  <form action="/admin/api/addnews" method="POST" enctype="multipart/form-data">
+    <input id="id" name="_id" class="visually-hidden">
+    <div class="mb-3">
+      <label for="titl" class="form-label">Title</label>
+      <input type="text" class="form-control" id="titl" name="title">
+    </div>
+    <div class="mb-3">
+      <label for="edtior" class="form-label">Description</label>
+      <textarea class="form-control" id="editor" name="description"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="formFileMultiple" class="form-label">Images</label>
+      <input class="form-control" type="file" id="formFileMultiple" name="images" multiple />
+    </div>
+    <div class="mb-3">
+      <label for="files" class="form-label">Google drive folder ID</label>
+      <input type="text" class="form-control" id="files" name="drive">
+    </div>
+    <div class="mb-5">
+      <p class="form-label">Tags</p>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tag0" name="tag0">
+        <label class="form-check-label badge rounded-pill tag0" for="inlineCheckbox1"> </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tag1" name="tag1">
+        <label class="form-check-label badge rounded-pill tag1" for="tag1"> </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tag2" name="tag2">
+        <label class="form-check-label badge rounded-pill tag2" for="tag2"> </label>
+      </div>
+    </div>
+    <div class="d-flex">
+      <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+      <button type="button" class="btn btn-danger" id="delete">Delete</button>
+    </div>
+  </form>
+  </div>
+  <script src="/js/admin.js"></script>
+</body>
+
+</html>

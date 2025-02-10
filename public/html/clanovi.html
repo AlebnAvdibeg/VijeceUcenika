@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('heads') %>
+    <title>Vijeće učenika</title>
+    <style>
+        #poss {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-left: 2rem;
+        }
+        .pos {
+            margin-bottom: 1rem;
+        }
+        .btn-close, .btn {
+            box-shadow: none !important;
+        }
+        h3 {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="članovi">
+        <div style="background-image: url(/images/test.jpg);"></div>
+        <div id="poss">
+            <div class="pos">
+                <p>PREDSJEDNIK</p>
+                <h3>TIN BENDER DOBRAČIĆ</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, minus est accusantium maxime officia ipsam autem quam amet provident deserunt, voluptatibus ratione odit voluptates accusamus reprehenderit quae vero nobis neque?</p>
+            </div>
+            <div class="pos">
+                <p>POTPREDSJEDNIK</p>
+                <h3>MARJA RIJA-ŠUBAŠIĆ</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas provident est dolor eligendi eius praesentium nam nemo aperiam sed reiciendis aut distinctio, ea quaerat sint sequi deserunt consequuntur ipsa?</p>
+            </div>
+            <div class="pos">
+                <p>ZAPISNIK</p>
+                <h3>MURIZ ČERKEZ</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae perspiciatis debitis iste odio numquam accusamus dolor vero porro inventore, soluta tempora. Reiciendis accusantium numquam vero amet autem, tempora facere perferendis.</p>
+            </div>
+        </div>
+    </div>
+    <%- include('search') %>
+</body>
+</html>

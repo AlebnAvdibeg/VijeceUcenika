@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('heads') %>
+    <title>Vijeće učenika</title>
+    <style>
+        #poss {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-left: 2rem;
+        }
+        .pos {
+            margin-bottom: 1rem;
+        }
+        .btn-close, .btn {
+            box-shadow: none !important;
+        }
+        h3 {
+            margin-bottom: 0.5rem;
+        }
+        .conic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            justify-items: center;
+        }
+        #imigi {
+            display: initial;
+            width: 100%;
+            height: 100%;
+        }
+        @media (max-width: 1024px) {
+            #imigi {display: none}
+            .conic {
+                grid-template-columns: 1fr;
+            }
+            .conic .d-flex  {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="conic con pt-5">
+        <div id="imigi" style="background-image: url(/images/test.jpg);"></div>
+        <div id="poss">
+            <div class="pos">
+                <p>PREDSJEDNIK</p>
+                <h3>TIN BENDER DOBRAČIĆ</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, minus est accusantium maxime officia ipsam autem quam amet provident deserunt, voluptatibus ratione odit voluptates accusamus reprehenderit quae vero nobis neque?</p>
+            </div>
+            <div class="pos">
+                <p>POTPREDSJEDNIK</p>
+                <h3>AMILA AKŠAMOVIĆ</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas provident est dolor eligendi eius praesentium nam nemo aperiam sed reiciendis aut distinctio, ea quaerat sint sequi deserunt consequuntur ipsa?</p>
+            </div>
+            <div class="pos">
+                <p>ZAPISNIK</p>
+                <h3>MURIZ ČERKEZ</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae perspiciatis debitis iste odio numquam accusamus dolor vero porro inventore, soluta tempora. Reiciendis accusantium numquam vero amet autem, tempora facere perferendis.</p>
+            </div>
+        </div>
+    </div>
+    <div class="con">
+        <h2 class="pb-5 text-center">Sudjeluj u našem radu</h2>
+        <div class="conic">
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <h3>Postani član</h3>
+                    <p class="text-center mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium maxime excepturi necessitatibus officiis porro cumque ratione impedit ducimus voluptatem ex deserunt, aliquam enim rem velit minus ad commodi optio ipsum?</p>
+                    <button id="b1" class="btn btn-primary mt-4 w-100">Postani član</button>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <h3>Predloži temu ili aktivnost</h3>
+                    <p class="text-center mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nesciunt reprehenderit quae optio quia voluptas consequuntur at illum, quidem, vitae voluptatibus, eligendi cum recusandae dolorem molestias quo quis vel id?</p>
+                    <button id="b2" class="btn btn-primary mt-4 w-100">Predloži</button>
+                </div>
+        </div>
+    </div>
+    <div id="f1" class="modal fade">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Postani član</h1>
+                    <button class="btn-close" id="f1b"></button>
+                  </div>
+                  <div class="modal-body">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti, exercitationem tempore debitis.
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div id="f2" class="modal fade">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Predloži temu ili aktivnost</h1>
+                    <button class="btn-close" id="f2b"></button>
+                  </div>
+                  <div class="modal-body">
+                    Predloži temu za buduću sjednicu ili aktivnost koja se treba objaviti na našem websiteu.
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-primary" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdathtBZIR94mdSo0ZBjgxFsB_dU0JGiLwZdQEY4FVIKO66iA/viewform?usp=dialog', '_blank').focus()">Popuni formular</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <%- include('search') %>
+    <script>
+        let f1 = document.querySelector("#f1"), f1b = document.querySelector("#f1b"), f2 = document.getElementById("f2"), f2b = document.querySelector("#f2b");
+        document.getElementById("b1").addEventListener("click", () => {
+            document.body.classList.add('disable');
+            f1.classList.add('show');
+        });
+        document.querySelector("#b2").addEventListener("click", () => {
+            document.body.classList.add('disable');
+            f2.classList.add('show');
+        });
+        function close(f, e) {
+            if (e.target != e.currentTarget) return;
+            f.classList.remove('show');
+            document.body.classList.remove('disable');
+        }
+        f1.addEventListener('click', (e) => close(f1, e));
+        f1b.addEventListener('click', (e) => close(f1, e));
+        f2.addEventListener('click', (e) => close(f2, e));
+        f2b.addEventListener('click', (e) => close(f2, e));
+    </script>
+</body>
+</html>

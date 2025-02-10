@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('heads') %>
+    <style>
+        #load * {
+            display: none;
+        }
+        #news {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-auto-rows: 18rem;
+            gap: 1rem;
+        }
+        @media (max-width: 1224px) {
+    #news {
+        grid-auto-rows: 15rem;
+    }
+}
+@media (max-width: 1024px) {
+    #news {
+        grid-auto-rows: 13rem;
+    }
+}
+@media (max-width: 790px) {
+    #news {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 16rem;
+        justify-items: center;
+    }
+}
+@media (max-width: 580px) {
+    #news {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 13rem 13rem 13rem;
+        justify-items: center;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="con">
+        <h2 id="rez" class="pb-2 border-bottom">Rezultati pretrage</h2>
+        <div id="news" class="py-3"></div>
+        <div id="load" style="display: flex; justify-content: center; margin-top: 1rem">
+            <button id="load-more" class="btn btn-primary show">Load More</button>
+            <div class="spinner-grow text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+    <%- include('search') %>
+    <script>
+        let loaded = document.querySelector("#news").children.length,
+            button = document.querySelector("#load-more"),
+            spinner = document.querySelector(".spinner-grow"),
+            query = (new URLSearchParams(window.location.search).get("q"));
+        const limit = 3;
+        function addNews() {
+            button.classList.remove('show');
+            spinner.classList.add('show');
+            fetch(`/api/news?q=${query}&o=${loaded}&l=${limit}`)
+                .then(response => response.json())
+                .then(data => {
+                    const newsContainer = document.getElementById('news');
+                    loaded += data.news.length;
+                    data.news.forEach(neww => {
+                        const col = document.createElement('div');
+                        col.classList = 'news-card p-4 text-white text-shadow-1';
+                        col.style.backgroundImage = `url('/images/${neww.images[0]}')`;
+                        col.onclick = ()=>window.location.href=`/news/${neww._id}`;
+                        col.innerHTML = `
+                                    <p class="lh-1 fw-bold" style="cursor: pointer;">
+                                        ${neww.title}
+                                    </p>
+                                    <p class="mt-2">${neww.date}</p>
+                                <div class="card-tags">
+                                    ${neww.tags.split('').map(tag => `<span class="badge rounded-pill tag${tag}"> </span>`).join('')}
+                                </div>
+                        `;
+                        newsContainer.appendChild(col);
+                    });
+                    if(!data.end) button.classList.add('show');
+                    spinner.classList.remove('show');
+                })
+                .catch(error => console.error('Error loading more news:', error));
+        }
+        if(!query) {
+            document.querySelector("#rez").remove();
+            query = '';
+        }
+        document.getElementById('load-more').addEventListener('click', addNews);
+        addNews();
+    </script>
+</body>
+</html>
