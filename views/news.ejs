@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('heads') %>
         <title>
             <%= news.title %>
         </title>
         <style>
-            .carousel-item {
+            body {
+                container-name: body;
+                container-type: normal;
+            }
+            #slider .carousel-item {
                 background-size: cover;
                 background-position: 50% 50%;
-                height: 35rem;
-                background-color: rgb(0,0,0,.2);
+                background-color: rgb(0, 0, 0, .2);
                 background-blend-mode: soft-light;
+                height: 100%;
                 width: 100%;
+            }
+            #slider {
+                display: grid;
+            }
+            .carousel {
+                width: 100%;
+            }
+            #slider::before {
+                content: "";
+                display: block;
+                padding-bottom: calc(2 / 3 * 100%);
+                grid-area: 1 / 1 / 2 / 2;
+            }
+            #slider .carousel-inner {
+                height: 100%;
+                grid-area: 1 / 1 / 2 / 2;
+                cursor: pointer;
+                position: relative;
             }
             .con {
                 display: grid;
@@ -20,80 +43,175 @@
                 gap: 2rem;
                 padding: 2rem;
             }
+
             .con h2 {
                 text-wrap: nowrap;
             }
+
             #news {
                 display: grid;
-                grid-template-columns: 1fr;
-                grid-auto-rows: 16rem;
-                gap: 1rem;
+                grid-template-columns: minmax(160px, 1fr);
+                grid-template-rows: 1fr;
+                gap: clamp(1rem, 1%, 2rem);
+                justify-items: center;
+                max-width: 28vw;
+                margin: auto;
             }
-            .carousel-control-prev, .carousel-control-next {
-                width: 10%;
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: max(4rem, 10%);
+                z-index: initial;
             }
-            @media (max-width: 1224px) {
-    #news {
-        grid-auto-rows: 13rem;
-    }
-    .carousel-item {
-        height: 30rem;
-    }
-}
-@media (max-width: 1024px) {
-    #news {
-        grid-auto-rows: 13rem;
-    }
-    .carousel-item {
-        height: 25rem;
-    }
-}
-@media (max-width: 790px) {
-    .con {
-        grid-template-columns: 1fr;
-    }
-    #news {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 16rem;
-        justify-items: center;
-    }
-}
-@media (max-width: 580px) {
-    #news {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 13rem 13rem 13rem;
-        justify-items: center;
-    }
-    .carousel-item {
-        height: 20rem;
-    }
-}
+            #news-title {
+                margin-bottom: .3rem;
+            }
+            #news-tags {
+                margin-bottom: .2rem;
+            }
+            #news-tags .badge {
+                margin-right: .5rem;
+            }
+            #ff {
+                container-name: neww; 
+                container-type: inline-size; 
+                height: 100%;
+                width: 100%;
+                max-width: 50rem;
+            }
+            #carousel-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgb(0, 0, 0, 0);
+                transition: background-color .2s;
+            }
+            #carousel-overlay:hover {
+                background-color: rgb(0, 0, 0, .2);
+            }
+            .carousel-item img {
+                position: absolute; 
+                max-height: 90vh;
+                max-width: 60vw; 
+                display: block; 
+                margin: auto;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+            .fade {
+                background: rgb(0, 0, 0, .9);
+            }
+            #modal-c {
+                position: absolute;
+                width: max(4rem, 10%);
+                top: 0;
+                right: 0;
+                padding: 0;
+                margin-top: 2rem;
+                background-size: 20%;
+                display: flex;
+                justify-content: center;
+            }
+            #news-files {
+                display: inline-flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: .5rem;
+            }
+            .news-file {
+                padding: .4rem 1rem;
+                background-color: rgb(240, 240, 240);
+                display: grid;
+                grid-template-columns: auto auto;
+                grid-template-rows: auto auto;
+                grid-template-areas: 
+                    "ico name"
+                    "ico size";
+                cursor: pointer;
+                margin: 0 1rem 1rem 0;
+            }
+            .news-file i {
+                grid-area: ico;
+                align-self: center;
+                padding-right: 1rem;
+            }
+            .name {
+                grid-area: name;
+                color: black;
+                text-decoration: none;
+            }
+            .name:hover {
+                text-decoration: underline;
+            }
+            .size {
+                grid-area: size;
+                font-size: .8rem;
+                color: rgb(94, 94, 94);
+            }
+            @container neww (min-width: 0px) {
+                #news-tags .badge {
+                    font-size: clamp(.8rem, 2cqw, 1.5rem) !important;
+                }
+            }
+            @container neww (min-width: 500px) {
+                #news-title {
+                    font-size: clamp(2rem, 6.5cqw, 2.3rem);
+                }
+                #news-date {
+                    font-size: clamp(1.2rem, 2cqw, 1.5rem);
+                }
+                #news-tags .badge {
+                    font-size: clamp(1rem, 2.1cqw, 1.5rem) !important;
+                }
+            }
+            @media (max-width: 790px) {
+                .con {
+                    grid-template-columns: 1fr;
+                }
+                #news {
+                    max-width: initial;
+                    gap: 1.5rem;
+                }
+                #slider {
+                    max-width: initial;
+                }
+                #ff {
+                    max-width: 100vw;
+                }
+                #news-tags {
+                    margin-bottom: .4rem;
+                }
+                #ss {
+                    margin-top: 2rem;
+                }
+            }
         </style>
 </head>
 <body>
     <div class="con">
-        <div>
-            <div>
+        <div style="width: 100%; height: 100%; display: flex; justify-content: center;">
+        <div id="ff">
+            <div id="news-tags">
                 <% news.tags.split('').forEach(function(tag) { %>
                     <span class="badge rounded-pill tag<%= tag %>"> </span>
-                <% }); %>
+                    <% }); %>
             </div>
-            <h1 class="mt-1">
+            <h1 id="news-title">
                 <%= news.title %>
             </h1>
-            <p>
+            <p id="news-date">
                 <%= news.date %>
             </p>
             <div id="slider" class="carousel slide mt-3" data-bs-ride="carousel">
-                <div class="carousel-inner">
+                <div class="carousel-inner" id="ci">
                     <% news.images.forEach(function(image, i) { %>
-                        <div class="carousel-item
-                                        <% if(!i) { %>
-                                            active
-                                        <% } %>
-                                    " style="background-image: url('/images/<%= image %>');">
-                        </div>
+                        <div class="carousel-item <% if(!i) { %> active <% } %>" style="background-image: url('<%= image %>');"></div>
                     <% }); %>
+                    <div id="carousel-overlay"></div>
                 </div>
                 <% if(news.images.length> 1) { %>
                     <button onclick="this.blur()" class="carousel-control-prev" type="button" data-bs-target="#slider"
@@ -112,33 +230,87 @@
                 <%- news.description %>
             </div>
             <% if(news.files && news.files.length) { %>
-                <h2 class="mt-4 pb-2 border-bottom">Priloženi fileovi</h2>
-                <iframe src="https://drive.google.com/embeddedfolderview?id=<%= news.drive %>#list" style="width:100%; height:600px; border:0;"></iframe>
+                <h2 class="pb-2 border-bottom" style="margin-top: 3rem">Priloženi fileovi</h2>
+                <div id="news-files">
+                    <% news.files.forEach(function(file) { %>
+                        <div class="news-file card">
+                            <i class="fa-regular fa-file fa-xl"></i>
+                            <a download="<%= file.name %>" href="/uploads/doc/<%= file.name %>" class="name"><%= file.name %></a>
+                            <p class="size"><%= file.size %></p>
+                        </div>
+                    <% }); %>
+                </div>
             <% } %>
+        </div>
         </div>
         <div id="ss">
             <h2 class="pb-2 border-bottom">Najnovije aktivnosti</h2>
             <div id="news" class="py-3">
                 <% newss.forEach(function(neww) { %>
-                    <div class="news-card p-4 text-white text-shadow-1"
-                        style="background-image: url('/images/<%= neww.images[0] %>');"
-                        onclick="window.location.href='/news/<%= neww._id %>'">
-                        <p class="pt-5 mt-5 lh-1 fw-bold" style="cursor: pointer;">
-                            <%= neww.title %>
-                        </p>
-                        <p class="mt-2">
-                            <%= neww.date %>
-                        </p>
-                        <div class="card-tags">
-                            <% neww.tags.split('').forEach(function(tag) { %>
-                                <span class="badge rounded-pill tag<%= tag %>"> </span>
-                            <% }); %>
+                    <div class="news-card-w">
+                        <div class="news-card text-white text-shadow-1"
+                            style="background-image: url('<%= neww.images[0] %>');"
+                            onclick="window.location.href='/news/<%= neww._id %>'">
+                            <p class="pt-5 mt-5 lh-1 fw-bold" style="cursor: pointer;">
+                                <%= neww.title %>
+                            </p>
+                            <p class="mt-2 news-date">
+                                <%= neww.date %>
+                            </p>
+                            <div class="card-tags">
+                                <% neww.tags.split('').forEach(function(tag) { %>
+                                    <span class="badge rounded-pill tag<%= tag %>"> </span>
+                                    <% }); %>
+                            </div>
                         </div>
                     </div>
-                <% }); %>
+                    <% }); %>
             </div>
         </div>
     </div>
     <%- include('search') %>
+    <div class="modal fade" id="carousel-modal" tabindex="-1">
+        <div id="modal-slider" class="carousel slide" data-bs-interval="false">
+            <div class="carousel-inner" style="height: 100%">
+                <% news.images.forEach(function(image, i) { %>
+                    <div class="carousel-item <% if(!i) { %> active <% } %>" style="height: 100%; position: relative">
+                        <img src="<%= image %>">
+                    </div>
+                <% }); %>
+            </div>
+            <% if(news.images.length> 1) { %>
+                <button onclick="this.blur()" class="carousel-control-prev" type="button" data-bs-target="#modal-slider"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button onclick="this.blur()" class="carousel-control-next" type="button" data-bs-target="#modal-slider"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            <% } %>
+            <div id="modal-c">
+                <button type="button" class="btn-close btn-close-white" aria-label="Close" style="width: 1.5rem; height: 1.5rem; padding: 0; background-size: 1.5rem"></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const cm = document.querySelector('#carousel-modal'), ci = document.querySelector('#ci'), bc = document.querySelector('#modal-c'), cit = document.querySelector('#carousel-modal .carousel-item');
+        function toggleCM(e) {
+            cm.classList.toggle('show');
+            document.body.classList.toggle('modal-open');
+        }
+        ci.onclick = toggleCM;
+        bc.onclick = toggleCM;
+        cit.onclick = e => {
+            if(e.target == cit) toggleCM();
+        }
+        cm.addEventListener('click', (e) => {
+            if(e.target == cm) {
+                cm.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>

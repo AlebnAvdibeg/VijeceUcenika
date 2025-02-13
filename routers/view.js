@@ -5,8 +5,6 @@ const router = express.Router();
 router.get('/', view.home);
 // Route for vijece page
 router.get('/vijece', view.vijece);
-// Route for clanovi page
-router.get('/clanovi', view.clanovi);
 // Route for all news
 router.get('/news', view.newsall);
 // Router for individual news

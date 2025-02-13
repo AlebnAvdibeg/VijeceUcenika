@@ -27,16 +27,41 @@
             justify-items: center;
         }
         #imigi {
-            display: initial;
+            display: block;
             width: 100%;
-            height: 100%;
+            background-position: center;
+            background-size: cover;
+            grid-area: 1 / 1 / 2 / 2;
+        }
+        #imigi-w {
+            display: grid;
+            width: 100%;
+            max-width: 40rem;
+        }
+        #imigi-w::before {
+            content: "";
+            display: block;
+            padding-bottom: calc(2 / 3 * 100%);
+            grid-area: 1 / 1 / 2 / 2;
+            height: 0;
         }
         @media (max-width: 1024px) {
-            #imigi {display: none}
             .conic {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
             .conic .d-flex  {
+                margin-bottom: 2rem;
+            }
+            #poss {
+                padding-left: 0;
+                max-width: 30rem;
+            }
+            .pos {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
                 margin-bottom: 2rem;
             }
         }
@@ -44,7 +69,7 @@
 </head>
 <body>
     <div class="conic con pt-5">
-        <div id="imigi" style="background-image: url(/images/test.jpg);"></div>
+        <div style="width: 100%; display: flex; align-items: center; justify-content: center;"><div id="imigi-w"><div id="imigi" style="background-image: url(/images/test.jpg);"></div></div></div>
         <div id="poss">
             <div class="pos">
                 <p>PREDSJEDNIK</p>

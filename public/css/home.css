@@ -14,7 +14,7 @@ input:focus, .form-control:focus {
     top: 0;
     animation: anim-cover linear forwards;
     animation-timeline: scroll();
-    animation-range: 0vh 50vh;
+    animation-range: 0vh calc(60vh - 5rem);
     background: url('/images/test.jpg');
     background-size: cover;
 	background-position: 50% 50%;
@@ -29,18 +29,18 @@ input:focus, .form-control:focus {
     margin: auto;
     animation: anim-title linear forwards;
     animation-timeline: scroll();
-    animation-range: 0vh 50vh;
+    animation-range: 0vh calc(60vh - 5rem);
 }
 #title h1 {
     animation: anim-h1 linear forwards;
     animation-timeline: scroll();
-    animation-range: 0vh 50vh;
+    animation-range: 0vh calc(60vh - 5rem);
 }
 #news {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 18rem;
-    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(160px, 1fr));
+    grid-template-rows: 1fr;
+    gap: clamp(1rem, 1%, 2rem);
 }
 #calendar {
     display: flex;
@@ -53,7 +53,7 @@ input:focus, .form-control:focus {
 }
 iframe {
     width: 80%;
-    height: 35rem;
+    
 }
 .b-example-divider {
     width: 100%;
@@ -93,18 +93,12 @@ iframe {
 }
 
 
-@media (max-width: 1224px) {
-    #news {
-        grid-template-rows: 15rem;
-    }
+@media (max-width: 1300px) {
     iframe {
         height: 30rem;
     }
 }
 @media (max-width: 1024px) {
-    #news {
-        grid-template-rows: 13rem;
-    }
     iframe {
         height: 28rem;
     }
@@ -127,27 +121,6 @@ iframe {
             font-size: 2rem;
         }
     }
-    #news {
-        grid-template-columns: 1fr;
-        grid-template-rows: 16rem 16rem 16rem;
-        justify-items: center;
-    }
-    iframe {
-        width: 100%;
-    }
-}
-@media (max-width: 580px) {
-    #news {
-        grid-template-columns: 1fr;
-        grid-template-rows: 13rem 13rem 13rem;
-        justify-items: center;
-    }
-    #calendar h2 {
-        margin-bottom: 1.5rem;
-    }
-    iframe {
-        height: 20rem;
-    }
     @keyframes anim-title {
         from {
         }
@@ -157,12 +130,39 @@ iframe {
             left: 50vw;
         }
     }
+    #news {
+        grid-template-columns: minmax(160px, 1fr);
+        justify-items: center;
+    }
+    iframe {
+        width: 100%;
+    }
+
+}
+@media (max-width: 580px) {
+    #calendar h2 {
+        margin-bottom: 1.5rem;
+    }
+    iframe {
+        height: 20rem;
+    }
     @keyframes anim-h1 {
         from {
             font-size: 2rem;
         }
         to {
             font-size: 1.8rem;
+        }
+    }
+}
+@media (max-width: 370px) {
+    @keyframes anim-title {
+        from {
+        }
+        to {
+            transform: translate(-50%, 0);
+            top: 1.3rem;
+            left: 50vw;
         }
     }
 }

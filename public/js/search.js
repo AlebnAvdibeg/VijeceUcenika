@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     let search = document.getElementById('search'), input = document.getElementById('input-modal'), list = document.querySelector('#wrapper');
     function updateList() {
-        fetch(`/api/news?q=${input.value}`)
+        fetch(`/api/news?q=${input.value}&l=5`)
             .then(response => response.json())
             .then(data => {
                 list.innerHTML = '';
@@ -19,14 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     newsItem.textContent = item.title;
                     list.appendChild(newsItem);
                 });
-                if(!data.end) {
-                    const newsItem = document.createElement('p');
-                    newsItem.textContent = '...';
-                    newsItem.style.textAlign = 'center';
-                    newsItem.style.marginBottom = '.5rem';
-                    list.appendChild(newsItem);
-                    return;
-                }
             })
             .catch(() => {
                 list.innerHTML = '';

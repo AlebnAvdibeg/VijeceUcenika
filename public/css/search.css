@@ -25,9 +25,10 @@ body {
     text-wrap: nowrap;
 }
 input:focus,
-.form-control:focus {
-    outline: none;
-    box-shadow: none;
+.form-control:focus,
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
     border-color: var(--bs-border-color);
 }
 #navbar {
@@ -60,11 +61,12 @@ input:focus,
 }
 
 li {
-    margin-right: 2rem;
+    margin-right: 2.8rem;
     font-size: 1.5rem;
     display: flex;
     align-items: center;
 }
+
 
 #search .modal-dialog {
     max-width: 100%;
@@ -110,7 +112,7 @@ li {
     padding-bottom: 0.5rem;
 }
 
-.disable {
+.disable, .modal-open {
     overflow: hidden;
     padding-right: 17px;
 }
@@ -136,21 +138,45 @@ li {
     background-color: var(--bs-primary);
 }
 .news-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
     background-color: rgba(0, 0, 0, .5);
     background-blend-mode: soft-light;
     border: none;
     border-radius: 5px;
     background-position: center;
     background-size: cover;
+    grid-area: 1 / 1 / 2 / 2;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5% 6%;
+    container-type: inline-size;
+}
+.news-card-w {
+    display: grid;
+    width: 100%;
+    max-width: 30rem;
+}
+.news-card-w::before {
+    content: "";
+    display: block;
+    padding-bottom: calc(2 / 3 * 100%);
+    grid-area: 1 / 1 / 2 / 2;
 }
 .card-tags {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: 0;
+    left: 0;
+    padding: inherit;
+    display: grid;
+    gap: .5rem;
+    grid-auto-flow: column;
 }
 .badge {
     font-size: 1rem;
-    margin-right:.4rem;
 }
 p {
     margin-bottom: 0;
@@ -185,19 +211,25 @@ p {
     font-size: 2rem;
 }
 .con {
-    padding: 2rem 5rem;
+    padding: 1.5rem 4rem;
 }
 .con h2 {
     width: 100%;
 }
-.news-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
+.nav-link {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
-.fw-bold {
-    font-size: 2rem;
+@container (min-width: 0px) {
+    .fw-bold {
+        font-size: 8cqw;
+    }
+    .news-date {
+        font-size: 4.5cqw;
+    }
+    .badge {
+        font-size: clamp(.6rem, 4cqw, 1000px);
+    }
 }
 #cover {
     width: 100%;
@@ -218,20 +250,19 @@ p {
     position: relative;
 }
 
-@media (max-width: 1224px) {
-    .fw-bold {
-        font-size: 1.5rem;
-    }
+@media (max-width: 1200px) {
     .con {
-        padding: 2rem 2rem;
+        padding: 1.5rem 2rem;
+    }
+}
+@media (max-width: 1100px) {
+    li {
+        margin-right: 1.5rem;
     }
 }
 @media (max-width: 1024px) {
     #fake-input {
         width: 13.5rem;
-    }
-    li {
-        margin-right: 1.5rem;
     }
     #navbar {
         padding: 0 1rem;
@@ -239,40 +270,13 @@ p {
     #title {
         left: 1rem;
     }
-    .fw-bold {
-        font-size: 1.2rem;
-    }
     .con {
-        padding: 2rem 1rem;
-    }
-    .badge {
-        font-size: .8rem;
-    }
-    .card-tags {
-        top: .8rem;
+        padding: 1rem 1rem 2rem 1rem;
     }
 }
-@media (max-width: 790px) {
+@media (max-width: 900px) {
     li {
         margin-right: 1.2rem;
-    }
-    .fw-bold {
-        font-size: 1.8rem;
-    }
-    .news-card {
-        width: 80%;
-    }
-    .con {
-        padding: 2rem 4rem;
-    }
-    .con h2 {
-        text-align: center;
-    }
-    .badge {
-        font-size: 1rem;
-    }
-    .card-tags {
-        top: 1rem;
     }
     #fake-input {
         display: none;
@@ -281,7 +285,16 @@ p {
         display: initial;
     }
 }
-@media (max-width: 580px) {
+@media (max-width: 790px) {
+    .con {
+        padding: 1.5rem 2rem;
+    }
+    .con h2 {
+        text-align: center;
+    }
+    .news-card-w {
+        max-width:25rem;
+    }
     .navbar-nav {
         display: none;
     }
@@ -303,33 +316,18 @@ p {
         left: 50vw;
         transform: translate(-50%, 0);
     }
-    .fw-bold {
-        font-size: 1.5rem;
+}
+@media (max-width: 580px) {
+    .news-card-w {
+        max-width: 22rem;
     }
-    #news {
-        grid-template-columns: 1fr;
-        grid-template-rows: 13rem 13rem 13rem;
-        justify-items: center;
+}
+@media (max-width: 370px) {
+    #title h1 {
+        font-size: 1.5rem !important;
     }
-    .news-card {
-        width: 100%;
-    }
-    #calendar h2 {
-        margin-bottom: 1.5rem;
-    }
-    iframe {
-        height: 20rem;
-    }
-    .con {
-        padding: 2rem 2rem;
-    }
-    .con h2 {
-        text-align: center;
-    }
-    .badge {
-        font-size: 1rem;
-    }
-    .card-tags {
-        top: 1rem;
+    #title img {
+        width: 2.5rem;
+        height: 2.5rem;
     }
 }

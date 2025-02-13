@@ -10,12 +10,13 @@
     <h2 class="pb-2 mt-2 border-bottom">Najnovije aktivnosti</h2>
     <div id="news" class="py-3">
       <% news.forEach(function(neww) { %>
-        <div class="news-card p-4 text-white text-shadow-1" style="background-image: url('/images/<%= neww.images[0] %>');"
+        <div class="news-card-w">
+        <div class="news-card text-white text-shadow-1" style="background-image: url('<%= neww.images[0] %>');"
           onclick="window.location.href='/news/<%= neww._id %>'">
             <p class="lh-1 fw-bold" style="cursor: pointer;">
               <%= neww.title %>
             </p>
-            <p class="mt-2">
+            <p class="mt-2 news-date">
               <%= neww.date %>
             </p>
           <div class="card-tags">
@@ -23,6 +24,7 @@
               <span class="badge rounded-pill tag<%= tag %>"> </span>
             <% }); %>
           </div>
+        </div>
         </div>
       <% }); %>
     </div>

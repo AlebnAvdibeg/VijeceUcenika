@@ -10,6 +10,16 @@ const connect = async () => {
     }
 };
 
+const fileSubSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    size: {
+        type: String,
+        required: true
+    },
+});
 const newsSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -25,12 +35,9 @@ const newsSchema = new mongoose.Schema({
     },
     images: {
         type: Array,
-        default: ['test.jpg']
+        default: ['/images/test.jpg']
     },
-    drive: {
-        type: String,
-        default: ''
-    },
+    files: [fileSubSchema],
     date: {
         type: String,
         required: true,

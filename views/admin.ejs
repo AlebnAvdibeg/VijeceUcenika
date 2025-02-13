@@ -59,6 +59,7 @@
         height: 100%;
         padding: 4rem;
         background: white;
+        padding-top: 5rem;
       }
       .show {
         display: block !important;
@@ -76,21 +77,58 @@
       #delete {
         display: none;
       }
+      #add {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+      }
+      #add i {
+        transform: translateY(2px);
+      }
+      #add p {
+        font-size: 1.5rem;
+      }
       button {
         margin-right: .5rem;
       }
       #wrapper {
         margin-top: -.5rem;
       }
+      #logout {
+        position: absolute;
+        bottom: 5rem;
+      }
+      .linky {
+        display: flex;
+            align-items: center;
+            color: black;
+            cursor: pointer;
+      }
+      .linky:hover {
+        color: rgb(13, 110, 253) !important;
+      }
+      .bacc {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            display: inline-flex;
+        }
+      .linky * {
+            margin: 0 1rem 0 0 !important;
+            line-height: 1em;
+            color: inherit;
+        }
+      .spinner-grow {
+        display: none;
+      }
     </style>
 </head>
 <body>
   <div class="modal srch">
-    <ul class="nav justify-content-end">
-      <li id="add" class="nav-item">
-        <p>Add</p>
-      </li>
-    </ul>
+    <div style="margin: 1rem 0 .8rem 0; display: flex; justify-content: end;"><div class="linky" id="add">
+      <i class="fa-solid fa-plus"></i>
+      <p>Dodaj aktivnost</p>
+    </div></div>
     <div class="modal-content">
       <div class="modal-header">
         <img id="icon-search" src="/images/search.svg">
@@ -100,32 +138,36 @@
       </div>
       <div class="modal-body">
         <div id="wrapper"></div>
+        <div class="spinner-grow text-primary" style="margin: .8rem auto 1.2rem auto" role="status">
+          <span class="visually-hidden">Loading...</span>
+      </div>
       </div>
     </div>
   </div>
-  <button class="btn btn-primary" onclick="window.location = '/admin/logout'">Logout</button>
+  <button id="logout" class="btn btn-primary" onclick="window.location = '/admin/logout'">Logout</button>
+  <a class="linky link-underline link-underline-opacity-0 bacc" href="/"><i class="fa-solid fa-chevron-left"></i><p>Početna</p></a>
   <div class="modal" id="edit">
-  <span id="back"><i class="fa-solid fa-arrow-left"></i></span>
-  <form action="/admin/api/addnews" method="POST" enctype="multipart/form-data">
+  <div class="linky link-underline link-underline-opacity-0 bacc" id="back"><i class="fa-solid fa-chevron-left"></i><p>Nazad</p></div>
+  <form id="edit-form" action="/admin/api/addnews" method="POST" enctype="multipart/form-data">
     <input id="id" name="_id" class="visually-hidden">
     <div class="mb-3">
-      <label for="titl" class="form-label">Title</label>
+      <label for="titl" class="form-label">Naslov</label>
       <input type="text" class="form-control" id="titl" name="title">
     </div>
     <div class="mb-3">
-      <label for="edtior" class="form-label">Description</label>
+      <label for="edtior" class="form-label">Sadržaj</label>
       <textarea class="form-control" id="editor" name="description"></textarea>
     </div>
     <div class="mb-3">
-      <label for="formFileMultiple" class="form-label">Images</label>
-      <input class="form-control" type="file" id="formFileMultiple" name="images" multiple />
+      <label for="images" class="form-label">Slike</label>
+      <input class="form-control" type="file" id="images" name="images" multiple />
     </div>
     <div class="mb-3">
-      <label for="files" class="form-label">Google drive folder ID</label>
-      <input type="text" class="form-control" id="files" name="drive">
+      <label for="files" class="form-label">Dokumenti</label>
+      <input class="form-control" type="file" id="files" name="files" multiple />
     </div>
     <div class="mb-5">
-      <p class="form-label">Tags</p>
+      <p class="form-label">Tagovi</p>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="tag0" name="tag0">
         <label class="form-check-label badge rounded-pill tag0" for="inlineCheckbox1"> </label>
@@ -140,12 +182,11 @@
       </div>
     </div>
     <div class="d-flex">
-      <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-      <button type="button" class="btn btn-danger" id="delete">Delete</button>
+      <button type="submit" class="btn btn-primary" id="submit">Dodaj</button>
+      <button type="button" class="btn btn-danger" id="delete">Obriši</button>
     </div>
   </form>
   </div>
   <script src="/js/admin.js"></script>
 </body>
-
 </html>

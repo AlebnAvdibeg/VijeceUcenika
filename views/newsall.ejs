@@ -7,33 +7,20 @@
             display: none;
         }
         #news {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-auto-rows: 18rem;
-            gap: 1rem;
-        }
-        @media (max-width: 1224px) {
-    #news {
-        grid-auto-rows: 15rem;
-    }
-}
-@media (max-width: 1024px) {
-    #news {
-        grid-auto-rows: 13rem;
-    }
+    display: grid;
+    grid-template-columns: repeat(3, minmax(160px, 1fr));
+    grid-template-rows: 1fr;
+    gap: clamp(1rem, 1%, 2rem);
 }
 @media (max-width: 790px) {
     #news {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 16rem;
+        grid-template-columns:repeat(2, minmax(160px, 1fr));
         justify-items: center;
     }
 }
-@media (max-width: 580px) {
+@media (max-width: 560px) {
     #news {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 13rem 13rem 13rem;
-        justify-items: center;
+        grid-template-columns: minmax(160px, 1fr);
     }
 }
     </style>
@@ -66,16 +53,17 @@
                     loaded += data.news.length;
                     data.news.forEach(neww => {
                         const col = document.createElement('div');
-                        col.classList = 'news-card p-4 text-white text-shadow-1';
-                        col.style.backgroundImage = `url('/images/${neww.images[0]}')`;
-                        col.onclick = ()=>window.location.href=`/news/${neww._id}`;
+                        col.classList.add('news-card-w');
                         col.innerHTML = `
+                                <div class="news-card text-white text-shadow-1" style="background-image: url('${neww.images[0]}')"
+                                    onclick="window.location.href='/news/${neww._id}'">
                                     <p class="lh-1 fw-bold" style="cursor: pointer;">
                                         ${neww.title}
                                     </p>
-                                    <p class="mt-2">${neww.date}</p>
+                                    <p class="mt-2 news-date">${neww.date}</p>
                                 <div class="card-tags">
                                     ${neww.tags.split('').map(tag => `<span class="badge rounded-pill tag${tag}"> </span>`).join('')}
+                                </div>
                                 </div>
                         `;
                         newsContainer.appendChild(col);
