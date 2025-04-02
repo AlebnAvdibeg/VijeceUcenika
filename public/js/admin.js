@@ -14,7 +14,7 @@ function populateEdit(data) {
         currentID = '';
         id.value = currentID;
     } else {
-        btn.innerHTML = 'Promjeni';
+        btn.innerHTML = 'Promijeni';
         form.setAttribute('action', '/admin/api/updatenews');
         hugerte.activeEditor.setContent(data?.description);
         data.tags.split('').forEach(tag => {tags[Number(tag)].checked = true});

@@ -12,9 +12,6 @@ input:focus, .form-control:focus {
     text-align: center;
     position: fixed;
     top: 0;
-    animation: anim-cover linear forwards;
-    animation-timeline: scroll();
-    animation-range: 0vh calc(60vh - 5rem);
     background: url('/images/test.jpg');
     background-size: cover;
 	background-position: 50% 50%;
@@ -27,14 +24,126 @@ input:focus, .form-control:focus {
     transform: translate(-55%, -50%);
     position: fixed;
     margin: auto;
-    animation: anim-title linear forwards;
-    animation-timeline: scroll();
-    animation-range: 0vh calc(60vh - 5rem);
 }
-#title h1 {
-    animation: anim-h1 linear forwards;
-    animation-timeline: scroll();
-    animation-range: 0vh calc(60vh - 5rem);
+@supports (animation-timeline: scroll()) {
+    #title h1 {
+        animation: anim-h1 linear forwards;
+        animation-timeline: scroll();
+        animation-range: 0vh calc(60vh - 5rem);
+    }
+    #title {
+        animation: anim-title linear forwards;
+        animation-timeline: scroll();
+        animation-range: 0vh calc(60vh - 5rem);
+    }
+    #cover {
+        animation: anim-cover linear forwards;
+        animation-timeline: scroll();
+        animation-range: 0vh calc(60vh - 5rem);
+    }
+    @keyframes anim-cover {
+        from {
+            background-position: 50% 0;
+        }
+        to {
+            background-position: 50% 100%;
+            background-color: #0b1584;
+            height: 5rem;
+        }
+    }
+    @keyframes anim-title {
+        from {
+        }
+        to {
+            transform: translate(0);
+            top: 1.1rem;
+            left: 2rem;
+        }
+    }
+    @keyframes anim-h1 {
+        from {
+            font-size: 3rem;
+        }
+        to {
+            font-size: 2rem;
+        }
+    }
+    @media (max-width: 1024px) {
+        @keyframes anim-title {
+            from {
+            }
+            to {
+                transform: translate(0);
+                top: 1.1rem;
+                left: 1rem;
+            }
+        }
+    }
+    @media (max-width: 790px) {
+        /*anim*/
+        @keyframes anim-h1 {
+            from {
+                font-size: 2.5rem;
+            }
+            to {
+                font-size: 2rem;
+            }
+        }
+        /*anim*/
+        @keyframes anim-title {
+            from {
+            }
+            to {
+                transform: translate(-50%, 0);
+                top: 1.1rem;
+                left: 50vw;
+            }
+        }
+    }
+    @media (max-width: 580px) {
+        @keyframes anim-h1 {
+            from {
+                font-size: 2rem;
+            }
+            to {
+                font-size: 1.8rem;
+            }
+        }
+    }
+    @media (max-width: 370px) {
+        @keyframes anim-title {
+            from {
+            }
+            to {
+                transform: translate(-50%, 0);
+                top: 1.3rem;
+                left: 50vw;
+            }
+        }
+    }
+}
+@supports (not (animation-timeline: scroll())) {
+    #cover {
+        background-position: 50% 0;
+        position: absolute;
+    }
+    #title h1 {
+        font-size: 3rem;
+    }
+    #title {
+        position: absolute;
+    }
+    #navbar {position: absolute}
+    @media (max-width: 790px) {
+        #title h1 {
+            font-size: 2.5rem;
+        }
+    }
+    @media (max-width: 580px) {
+        #title h1 {
+            font-size: 2rem;
+        }
+    }
 }
 #news {
     display: grid;
@@ -53,7 +162,6 @@ input:focus, .form-control:focus {
 }
 iframe {
     width: 80%;
-    
 }
 .b-example-divider {
     width: 100%;
@@ -63,34 +171,6 @@ iframe {
     border-width: 1px 0;
     box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
   }
-
-@keyframes anim-cover {
-	from {
-		background-position: 50% 0;
-	}
-	to {
-		background-position: 50% 100%;
-		background-color: #0b1584;
-		height: 5rem;
-	}
-}
-@keyframes anim-title {
-    from {
-    }
-    to {
-        transform: translate(0);
-        top: 1.1rem;
-        left: 2rem;
-    }
-}
-@keyframes anim-h1 {
-    from {
-        font-size: 3rem;
-    }
-    to {
-        font-size: 2rem;
-    }
-}
 
 
 @media (max-width: 1300px) {
@@ -102,34 +182,8 @@ iframe {
     iframe {
         height: 28rem;
     }
-    @keyframes anim-title {
-        from {
-        }
-        to {
-            transform: translate(0);
-            top: 1.1rem;
-            left: 1rem;
-        }
-    }
 }
 @media (max-width: 790px) {
-    @keyframes anim-h1 {
-        from {
-            font-size: 2.5rem;
-        }
-        to {
-            font-size: 2rem;
-        }
-    }
-    @keyframes anim-title {
-        from {
-        }
-        to {
-            transform: translate(-50%, 0);
-            top: 1.1rem;
-            left: 50vw;
-        }
-    }
     #news {
         grid-template-columns: minmax(160px, 1fr);
         justify-items: center;
@@ -145,24 +199,5 @@ iframe {
     }
     iframe {
         height: 20rem;
-    }
-    @keyframes anim-h1 {
-        from {
-            font-size: 2rem;
-        }
-        to {
-            font-size: 1.8rem;
-        }
-    }
-}
-@media (max-width: 370px) {
-    @keyframes anim-title {
-        from {
-        }
-        to {
-            transform: translate(-50%, 0);
-            top: 1.3rem;
-            left: 50vw;
-        }
     }
 }

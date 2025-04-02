@@ -14,10 +14,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: 'secret', resave: false, saveUninitialized: false}));
 app.use(passport.initialize());
 app.use(passport.session());
-/*app.use('/admin', (req, res, next) => {
+app.use('/admin', (req, res, next) => {
     if(req.isAuthenticated()) next();
     else res.redirect('/login');
-});*/
+});
 
 app.use('/', view);
 app.use('/', admin);

@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-let users = [{ id: 1, username: 'moderator', password: 'hello' }]; // Example user
+let users = [{ id: 1, username: 'moderator', password: 'hello' }, { id: 2, username: 'admin', password: 'admin' }]; // Example user
 
 passport.use(new LocalStrategy((username, password, done) => {
     const user = users.find(u => u.username === username);
